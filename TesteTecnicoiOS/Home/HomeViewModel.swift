@@ -17,7 +17,9 @@ final class HomeViewModel {
         Networker.fetchData { [weak self] response, error in
             if let response = response {
                 self?.model = response.results
-                self?.viewController?.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self?.viewController?.tableView.reloadData()                    
+                }
             }
         }
     }
